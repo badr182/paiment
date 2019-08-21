@@ -1,0 +1,17 @@
+{
+    "name": "eassesme/paiement",
+    "authors": [
+        {
+            "name": "Badr182",
+            "email": "badrakkar182@gmail.com"
+        }
+    ],
+    "require": {
+        "paypal/rest-api-sdk-php": "^1.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paiement\\":"src/"
+        }
+    }
+}
