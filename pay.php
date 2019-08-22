@@ -15,4 +15,19 @@ $apiContext = new \PayPal\Rest\ApiContext(
 $basket = \Paiement\Basket::fake();
 $payment = \PayPal\Api\Payment::get($_GET['paymentId'],$apiContext);
 
-var_dump($payment);
+$execution = (new \PayPal\Api\PaymentExecution())
+    ->setPayerId($_GET['PayerID'])
+    ->setTransactions($payment->getTransactions());
+
+
+
+try{
+    $payment->execute($execution, $apiContext);
+    // get transaction numero 1
+    var_dump( $payment->getTransactions()[0]->getCustom() );
+    var_dump( $payment );
+  }catch( PayPal\Exception\PayPalConnectionException $e){
+    // echo $e->getMessage();
+    var_dump( json_decode( $e->getData()) );
+  }
+  

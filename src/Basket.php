@@ -26,6 +26,11 @@ class Basket
         });
     }
 
+    public function getVatPrice($rate):float 
+    {
+        return round( $this->getPrice()*$rate*100 )/100;
+    }
+
 
     /**
      * Get the value of products

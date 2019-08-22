@@ -15,36 +15,9 @@ $apiContext = new \PayPal\Rest\ApiContext(
 );
 
 
-$list = new \PayPal\Api\ItemList();
-foreach( $basket->getProducts() as $product ){
-  
-  $item = ( new \PayPal\Api\Item() )
-    ->setName( $product->getName() )
-    ->setPrice( $product->getPrice() )
-    ->setCurrency( 'USD' )
-    ->setQuantity( 1 );
-  
-  $list->addItem( $item );
-  
-}
-$details = ( new PayPal\Api\Details() )
-          ->setSubtotal( $basket->getPrice() );
-
-$amount = ( new \PayPal\Api\Amount() )
-          ->setTotal( $basket->getPrice() )
-          ->setCurrency('USD')
-          ->setDetails($details);
-
-// transaction 
-$transaction = ( new \PayPal\Api\Transaction() )
-          ->setItemList( $list )
-          ->setDescription('Achat sur eAssessme')
-          ->setAmount($amount)
-          ->setCustom('demo-1');
-
 $payment = new \PayPal\Api\Payment();
-$payment->setTransactions([$transaction]);
-
+//$payment->setTransactions([$transaction]);
+$payment->addTransaction(\Paiement\TransactionFactory::fromBasket($basket) );
 
 // setIntent:  intent 
 /*
