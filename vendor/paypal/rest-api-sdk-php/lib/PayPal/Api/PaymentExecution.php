@@ -69,7 +69,7 @@ class PaymentExecution extends PayPalModel
      * 
      * @return $this
      */
-    public function setTransactions($transactions)
+    public function ($transactions)
     {
         $this->transactions = $transactions;
         return $this;

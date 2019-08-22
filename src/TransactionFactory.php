@@ -5,6 +5,7 @@ use PayPal\Api\Transaction ;
 
 class TransactionFactory{
 
+        // prend un panier est convertir on transaction  paypal 
     static function fromBasket(Basket $basket, float $vatRate = 0):Transaction {
         
         $list = new \PayPal\Api\ItemList();
